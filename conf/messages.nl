@@ -1,1 +1,1 @@
-Productencatalogus
+application.name = Productencatalogus

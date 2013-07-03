@@ -2,8 +2,11 @@ package controllers
 
 import play.api.mvc.{Action, Controller}
 
-object Application extends Controller {
-  
+/**
+ * Application controller
+ */
+object Application extends Controller
+{
   def index = Action {
     Redirect(routes.Products.list)
   }

@@ -3,7 +3,7 @@
 @main(Messages("application.name")) {
     <dl class="products">
         @for(product <- products) {
-            <dt>@product.name</dt>
+            <dt><a href="@routes.Products.show(product.ean)">@product.name @product.ean</a></dt>
             <dd>@product.description</dd>
         }
     </dl>

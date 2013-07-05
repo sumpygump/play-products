@@ -31,6 +31,9 @@ object Products extends Controller
     ).getOrElse(NotFound)
   }
 
+  /**
+   * Product form
+   */
   private val productForm: Form[Product] = Form(
     mapping(
       "ean" -> longNumber.verifying(

@@ -4,8 +4,10 @@ package models
  * Product case class
  */
 case class Product (
-  ean: Long, name: String, description: String
-  )
+  ean: Long,
+  name: String,
+  description: String
+)
 
 /**
  * Product companion object

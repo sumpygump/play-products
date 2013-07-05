@@ -2,6 +2,8 @@
 @import play.api.Play.current
 
 <footer>
+    revision = @current.configuration.getString("application.revision"),
+    mode = @current.mode,
     lang = @lang.code,
     user = @current.configuration.getString("environment.user"),
     date = @(new java.util.Date().format("yyyy-MM-dd HH:mm"))

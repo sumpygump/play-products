@@ -1,6 +1,6 @@
 package controllers
 
-import play.api.mvc.{Action, Controller}
+import play.api.mvc.{Action, Controller, Flash}
 import models.Product
 
 import play.api.data.Form
@@ -29,6 +29,39 @@ object Products extends Controller
     Product.findByEan(ean).map ( product =>
       Ok(views.html.products.details(product))
     ).getOrElse(NotFound)
+  }
+
+  /**
+   * New product action
+   */
+  def newProduct = Action { implicit request =>
+    val form = if (flash.get("error").isDefined)
+      this.productForm.bind(flash.data)
+    else
+      this.productForm
+
+    Ok(views.html.products.editProduct(form))
+  }
+
+  /**
+   * Save action
+   */
+  def save = Action { implicit request =>
+    val newProductForm = this.productForm.bindFromRequest()
+
+    newProductForm.fold(
+      hasErrors = { form =>
+        Redirect(routes.Products.newProduct()).
+          flashing(Flash(form.data) + ("error" -> Messages("validation.errors")))
+      },
+      
+      success = { newProduct =>
+        Product.add(newProduct)
+        val message = Messages("products.new.success", newProduct.name)
+        Redirect(routes.Products.show(newProduct.ean)).
+          flashing("success" -> message)
+      }
+    )
   }
 
   /**

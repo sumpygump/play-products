@@ -41,4 +41,13 @@ object Product {
    * @param Product EAN
    */
   def findByEan(ean: Long) = this.products.find(_.ean == ean)
+
+  /**
+   * Add new product
+   *
+   * @param Product object
+   */
+  def add(product: Product) {
+    this.products = this.products + product
+  }
 }

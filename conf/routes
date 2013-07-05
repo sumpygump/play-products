@@ -12,5 +12,9 @@ GET     /products/:ean              controllers.Products.show(ean: Long)
 
 GET     /barcode/:ean               controllers.Barcodes.barcode(ean: Long)
 
+GET     /picklists                  controllers.PickLists.list
+GET     /picklists/:warehouse       controllers.PickLists.warehouse(warehouse: String)
+GET     /picklists/:warehouse/preview controllers.PickLists.preview(warehouse: String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

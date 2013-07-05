@@ -1,0 +1,8 @@
+@(warehouse: String)(implicit flash: Flash, lang: Lang)
+
+@main("Pick lists") {
+    <h1>Pick Lists for Warehouse @warehouse</h1>
+
+    <a class="btn btn-primary" href="@routes.PickLists.preview(warehouse)">Preview</a>
+}
+

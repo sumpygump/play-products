@@ -1,0 +1,25 @@
+@(warehouse: String, list: List[models.Preparation], time: java.util.Date)(implicit flash: Flash, lang: Lang)
+
+@main("Warehouse " + warehouse + " pick list for " + time) {
+    <h1>Warehouse @warehouse</h1>
+    <h2>Pick list for @time</h2>
+
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>Order #</th>
+            <th>Product EAN</th>
+            <th>Product description</th>
+            <th>Quantity</th>
+            <th>Location</th>
+        </tr>
+    @for((preparation, index) <- list.zipWithIndex) {
+        <tr>
+            <td>@preparation.orderNumber</td>
+            <td>@preparation.product.ean</td>
+            <td>@preparation.product.description</td>
+            <td>@preparation.quantity</td>
+            <td>@preparation.location</td>
+        </tr>
+    }
+    </table>
+}

@@ -1,6 +1,8 @@
 @(products: List[Product])(implicit flash: Flash, lang: Lang)
 
 @main(Messages("application.name")) {
+    <h1>Products</h1>
+
     <dl class="products">
         @for(product <- products) {
             <dt><a href="@routes.Products.show(product.ean)">@product.name @product.ean</a></dt>

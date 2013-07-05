@@ -9,12 +9,14 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
     </head>
     <body>
-        <div class="screenshot">
-            <div class="navbar navbar-fixed-top">
+        <div class="page">
+            <div class="navbar navbar-inverse navbar-fixed-top">
                 <div class="navbar-inner">
-                    <div class="container">
-                        <a class="brand" href="@routes.Application.index()">@Messages("application.name")</a>
-                    </div>
+                    <a class="brand" href="@routes.Application.index()">@Messages("application.name")</a>
+                    <ul class="nav">
+                        <li><a href="@routes.Products.list">Products</a></li>
+                        <li><a href="@routes.PickLists.list">Picklists</a></li>
+                    </ul>
                 </div>
             </div>
 

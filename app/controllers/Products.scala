@@ -15,7 +15,7 @@ object Products extends Controller
   /**
    * List action
    */
-  def list = Action { implicit request =>
+  def list(page: Int = 1) = Action { implicit request =>
     val products = Product.findAll
     Ok(views.html.products.list(products))
   }

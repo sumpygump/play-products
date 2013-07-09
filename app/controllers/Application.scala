@@ -11,6 +11,6 @@ object Application extends Controller
    * Index (home) action
    */
   def index = Action {
-    Redirect(routes.Products.list)
+    Redirect(routes.Products.list())
   }
 }

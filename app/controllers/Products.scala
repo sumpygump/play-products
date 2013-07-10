@@ -16,7 +16,7 @@ object Products extends Controller
    * List action
    */
   def list(page: Int = 1) = Action { implicit request =>
-    val products = Product.findAll
+    val products = Product.getAll
     Ok(views.html.products.list(products))
   }
 
@@ -51,12 +51,15 @@ object Products extends Controller
 
     newProductForm.fold(
       hasErrors = { form =>
-        Redirect(routes.Products.newProduct()).
-          flashing(Flash(form.data) + ("error" -> Messages("validation.errors")))
+        Redirect(
+          routes.Products.newProduct()).
+          flashing(Flash(form.data) + ("error" -> Messages("validation.errors"))
+        )
       },
       
       success = { newProduct =>
-        Product.add(newProduct)
+        //Product.add(newProduct)
+        Product.insert(newProduct)
         val message = Messages("products.new.success", newProduct.name)
         Redirect(routes.Products.show(newProduct.ean)).
           flashing("success" -> message)
@@ -69,6 +72,7 @@ object Products extends Controller
    */
   private val productForm: Form[Product] = Form(
     mapping(
+      "id" -> longNumber,
       "ean" -> longNumber.verifying(
         "validation.ean.duplicate", Product.findByEan(_).isEmpty),
       "name" -> nonEmptyText,

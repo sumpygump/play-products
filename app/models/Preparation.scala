@@ -1,5 +1,8 @@
 package models
 
+/**
+ * Preparation case class
+ */
 case class Preparation (
   warehouse: String,
   orderNumber: Long,

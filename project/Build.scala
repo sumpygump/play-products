@@ -17,6 +17,7 @@ object ApplicationBuild extends Build {
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
+    scalacOptions ++= Seq("-feature"),
     // Add your own project settings here      
     registerTask("seed-products", "tasks.SeedProducts", "Seed data for products table")
   )

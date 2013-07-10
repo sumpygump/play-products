@@ -10,6 +10,7 @@
             <legend>
                 @Messages("products.details", Messages("products.new"))
             </legend>
+            @helper.inputText(productForm("id"))
             @helper.inputText(productForm("ean"))
             @helper.inputText(productForm("name"))
             @helper.textarea(productForm("description"))
